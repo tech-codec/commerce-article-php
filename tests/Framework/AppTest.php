@@ -1,12 +1,17 @@
 <?php
 
-namespace Test\Framework;
+namespace Tests\Framework;
 
+use Exception;
 use Framework\App;
+use App\Blog\BlogModule;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\ServerRequest;
-use PHPUnit\Framework\TestCase;
 use Prophecy\Util\StringUtil;
+use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Psr7\ServerRequest;
+use Psr\Http\Message\ResponseInterface;
+use Tests\Framework\Modules\StringModule;
+use Tests\Framework\Modules\ErroredModule;
 
 class AppTest extends TestCase
 {
@@ -22,19 +27,61 @@ class AppTest extends TestCase
 
     public function testBlog()
     {
-        $app = new App();
+        $app = new App(
+            [
+                BlogModule::class
+            ]
+        );
 
         $request = new ServerRequest('GET', "/blog");
+        $response = $app->run($request);
+        $this->assertStringContainsStringIgnoringCase('<h1>Bienvenue sur le blog</h1>', $response->getBody());
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $requestSingle = new ServerRequest('GET', '/blog/article-de-test');
+        $responseSingle = $app->run($requestSingle);
+        $this->assertStringContainsStringIgnoringCase('<h1>Bienvenue sur l\'article article-de-test </h1>', $responseSingle->getBody());
+    }
+
+
+    public function testThroExceptionIfNoResponseSend()
+    {
+        $app = new App(
+            [
+                ErroredModule::class
+            ]
+        );
+
+        $request = new ServerRequest('GET', '/demo');
+
+        $this->expectException(\Exception::class);
+
+        $app->run($request);
+    }
+
+    public function testConvertStringToresponse()
+    {
+        $app = new App(
+            [
+                StringModule::class
+            ]
+        );
+
+        $request = new ServerRequest('GET', '/demo');
 
         $response = $app->run($request);
 
-        $this->assertStringContainsStringIgnoringCase('<h1>Bienvenue sur le blog</h1>', $response->getBody());
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertEquals("DEMO", (string)$response->getBody());
     }
 
     public function testError404()
     {
-        $app = new App();
+        $app = new App(
+            [
+                BlogModule::class
+            ]
+        );
 
         $request = new ServerRequest('GET', "/aze");
 
