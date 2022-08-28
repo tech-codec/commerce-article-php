@@ -42,7 +42,7 @@ class Router
      * la méthode qui permet de retouné une route
      *
      * @param ServerRequestInterface $request
-     * @return Route  
+     * @return Route
      */
     public function match(ServerRequestInterface $request): ?Route
     {

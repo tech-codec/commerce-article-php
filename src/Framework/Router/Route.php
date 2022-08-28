@@ -18,9 +18,9 @@ class Route
     /**
      * la methode de la route a appeller(celui d'un controller)
      *
-     * @var 
+     * @var
      */
-    private  $callback;
+    private $callback;
 
     /**
      * le tableau des paramètres de la route
@@ -50,7 +50,7 @@ class Route
     /**
      * retourne la methode du controller qui est lié a la route
      *
-     * @return 
+     * @return
      */
     public function getCallback()
     {
