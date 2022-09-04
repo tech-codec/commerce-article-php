@@ -1,10 +1,8 @@
 <?php
 
-namespace Framework;
+namespace Framework\Renderer;
 
-use phpDocumentor\Reflection\Types\Self_;
-
-class Renderer
+class PHPRenderer implements RendererInterface
 {
 
     const DEFAULT_NAMESPACE = '__MAIN';
@@ -23,6 +21,14 @@ class Renderer
      * @var array
      */
     private $globals = [];
+
+
+    public function __construct(?string $defaultPath = null)
+    {
+        if (!is_null($defaultPath)) {
+            $this->addPath($defaultPath);
+        }
+    }
 
 
     /**
@@ -44,9 +50,9 @@ class Renderer
 
     /**
      * Permet de retourner une vue et des paramètres s'il elle en posède
-     * le chemin peut etre précisé avec des namespaces rajourtés via addPath() 
+     * le chemin peut etre précisé avec des namespaces rajourtés via addPath()
      * $this->render('@blog/view');
-     * $this->render('view) 
+     * $this->render('view)
      *
      * @param string $view
      * @param array $params

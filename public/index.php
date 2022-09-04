@@ -2,14 +2,18 @@
 
 use Framework\App;
 use App\Blog\BlogModule;
-use Framework\Renderer;
 use GuzzleHttp\Psr7\ServerRequest;
+use Framework\Renderer\PHPRenderer;
+use Framework\Renderer\TwigRenderer;
 
 require '../vendor/autoload.php';
 
-$renderer = new Renderer();
+$renderer = new TwigRenderer(dirname(__DIR__) . '/views');
 
-$renderer->addPath(dirname(__DIR__) . '/views');
+
+/*$loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__) . '/views');
+
+$twig = new Twig\Environment($loader, []);*/
 
 $app = new App(
     [
