@@ -20,7 +20,7 @@ $modules =  [
 ];
 
 //ici nous définisons le container d'injecteur de dépenpende de PHP DI
-// pour la gestion de nos dépendence et les dépendences se trouve dans
+// pour la gestion de nos dépendence et les dépendences se trouvent dans
 //fichier /config/config.php
 $builder = new ContainerBuilder();
 $builder->addDefinitions(dirname(__DIR__) . '/config/config.php');
