@@ -29,11 +29,11 @@ class Router
      * la méthode qui permet l'ajout d'une route a notre système
      *
      * @param string $path
-     * @param callable $callable
+     * @param callable|string $callable
      * @param string $name
      * @return void
      */
-    public function get(string $path, callable $callback, string $name)
+    public function get(string $path, $callback, string $name)
     {
         $this->router->addRoute(new ZendRoute($path, $callback, ['GET'], $name));
     }

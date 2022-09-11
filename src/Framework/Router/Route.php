@@ -29,6 +29,14 @@ class Route
      */
     private array $params;
 
+
+    /**
+     * Route constructor
+     *
+     * @param string $name
+     * @param string|callabble $callback
+     * @param array $params
+     */
     public function __construct(string $name, $callback, array $params)
     {
         $this->name = $name;
@@ -50,7 +58,7 @@ class Route
     /**
      * retourne la methode du controller qui est lié a la route
      *
-     * @return
+     * @return string|callable
      */
     public function getCallback()
     {
