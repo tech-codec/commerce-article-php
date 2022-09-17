@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<ruleset name ="Monframework">
+    <description>mes regles de formatages</description>
+    <arg name="colors"/>
+    <arg value="p"/>
+    <file>src</file>
+    <file>public/index.php</file>
+    <rule ref="PSR2">
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+        <exclude name="PSR2.Namespaces.UseDeclaration.SpaceAfterLastUse"/>
+    </rule>
+</ruleset>
