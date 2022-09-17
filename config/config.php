@@ -2,6 +2,7 @@
 
 /**
  * fichier de configuration de nos différents dépendence globale exemple rooter, model et chemin de vue
+ * c'est aussi dans ce fichié qu'on définir les élément de migration
  */
 
 use Framework\Renderer\TwigRenderer;
@@ -14,6 +15,10 @@ use Framework\Router\RouterTwigExtension;
 use function \DI\{factory, create, get};
 
 return [
+    'database.host' => 'localhost',
+    'database.username' => 'root',
+    'database.password' => 'root',
+    'database.name' => 'monsupersite',
     'views.path' => dirname(__DIR__) . '/views',
     'twig.extensions' => [get(RouterTwigExtension::class)],
     Router::class => create(),

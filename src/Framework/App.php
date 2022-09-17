@@ -76,4 +76,14 @@ class App
             throw new \Exception('the response is not a string or instance of responseInterface ');
         }
     }
+
+    /**
+     * methode qui retourne le container d'injecteur de dépendance
+     *
+     * @return ContainerInterface
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
 }
