@@ -7,8 +7,8 @@ use Twig\Loader\FilesystemLoader;
 
 
 /**
- * cette classe est en charge de d'aujouter le chemin  d'une vue 
- * et de rendre cette vue avec les parramettre correspondants 
+ * cette classe est en charge de d'aujouter le chemin  d'une vue
+ * et de rendre cette vue avec les parramettre correspondants
  */
 class TwigRenderer implements RendererInterface
 {

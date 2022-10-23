@@ -5,8 +5,8 @@ namespace Framework\Router;
 use Framework\Router;
 
 /**
- * cette classe permet d'ajouté des méthode grace a twig en heritant de 
- * AbstractExtension et ele va nous permet de gérer les lien pour 
+ * cette classe permet d'ajouté des méthode grace a twig en heritant de
+ * AbstractExtension et ele va nous permet de gérer les lien pour
  * la navigation
  */
 class RouterTwigExtension extends \Twig\Extension\AbstractExtension
