@@ -13,6 +13,9 @@ use Framework\Renderer\RendererInterface;
 
 use Framework\Router\RouterTwigExtension;
 use Framework\Renderer\TwigRendererFactory;
+use Framework\Twig\FlashExtension;
+use Framework\Sessions\PHPSession;
+use Framework\Sessions\SessionInterface;
 use Framework\Twig\PagerFantaExtension;
 use Framework\Twig\TextExtension;
 use Framework\Twig\TimeExtension;
@@ -27,8 +30,10 @@ return [
         get(RouterTwigExtension::class),
         get(PagerFantaExtension::class),
         get(TextExtension::class),
-        get(TimeExtension::class)
+        get(TimeExtension::class),
+        get(FlashExtension::class)
     ],
+    SessionInterface::class => create(PHPSession::class),
     Router::class => create(),
     RendererInterface::class => factory(TwigRendererFactory::class), //on permet a notre configuration de ne pas dépendre de twigrender
     \PDO::class => function (ContainerInterface $c) {

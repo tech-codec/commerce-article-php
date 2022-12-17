@@ -6,6 +6,7 @@
  * pour le lancement de nos controlleurs (module)
  */
 
+use App\Admin\AdminModule;
 use Framework\App;
 use App\Blog\BlogModule;
 use DI\ContainerBuilder;
@@ -15,7 +16,8 @@ use GuzzleHttp\Psr7\ServerRequest;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 $modules =  [
-    BlogModule::class
+    AdminModule::class,
+    BlogModule::class,
 ];
 
 //ici nous définisons le container d'injecteur de dépenpende de PHP DI

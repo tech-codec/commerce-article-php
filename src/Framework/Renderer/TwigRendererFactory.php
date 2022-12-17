@@ -6,6 +6,7 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Psr\Container\ContainerInterface;
 use Framework\Router\RouterTwigExtension;
+use Twig\Extension\DebugExtension;
 
 /**
  * cette classe est utilisée pour être appeler comme un callable ou une closure fontion
@@ -17,7 +18,8 @@ class TwigRendererFactory
     {
         $viewPath = $container->get('views.path');
         $loader = new FilesystemLoader($viewPath);
-        $twig = new Environment($loader);
+        $twig = new Environment($loader, ['debug' => true]);
+        $twig->addExtension(new DebugExtension);
         if ($container->has('twig.extensions')) {
             foreach ($container->get('twig.extensions') as $extension) {
                 $twig->addExtension($extension);
